@@ -4,10 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-  
     "start": "hotnode ./bin/www"
-
-
   },
   
  "author": "",
