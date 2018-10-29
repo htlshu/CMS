@@ -1,6 +1,7 @@
 import SMERouter from 'sme-router'
 //bus工具
 import bus from '../util/bus';
+
 import home_template from '../views/home.html'
 // 404视图
 import not_found_template from '../views/404.html'
