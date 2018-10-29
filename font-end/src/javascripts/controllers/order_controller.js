@@ -21,8 +21,16 @@ const listEvent = ()=> {
         bus.emit('go','/order-save');
     })
     $('.order-list .pos-update').on('click',function (){
-        
+        let id = $(this).parents('tr').data('id');
+        bus.emit('go','/order-update',{ id });
     })
+    $('.pos-remove').on('click',removeOrder)
+}
+//删除操作
+const removeOrder = function(){
+    let id = $(this).parents('tr').data('id');
+    let _data = orderModel.remove({id : id});
+    handleToastByData(_results)
 }
 //添加视图
 const save = (req ,res ,next) => {

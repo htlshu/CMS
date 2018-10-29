@@ -8,7 +8,6 @@ import not_found_template from '../views/404.html'
 import orderController from '../controllers/order_controller'
 //商品路由
 import products_controller from '../controllers/products_controller'
-import bus from '../util/bus'
 
 var router = null
 
@@ -27,6 +26,7 @@ const _init = () => {
     //订单列表路由
     router.route('/order-list', orderController.list);
     router.route('/order-save', orderController.save)
+    router.route('/order-update', orderController.update)
 
    //商品路由
    router.route('/products_list',products_controller.list)
