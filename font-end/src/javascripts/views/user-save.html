@@ -1,0 +1,67 @@
+<div class="box box-info user-save">
+        <div class="box-header with-border">
+            <h3 class="box-title">添加用户信息</h3>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        <form class="form-horizontal" id="save-form" enctype="multipart/form-data">
+            <div class="box-body">
+                <div class="form-group">
+                    <label for="userLogo" class="col-sm-2 control-label">头像</label>
+    
+                    <div class="col-sm-10">
+                        <input  type="file" name="userLogo" id="userLogo">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="userName" class="col-sm-2 control-label">用户名称</label>
+    
+                    <div class="col-sm-10">
+                        <input required type="text" class="form-control" name="userName" id="userName" placeholder="请输入用户名字">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="userNickname" class="col-sm-2 control-label">用户昵称</label>
+    
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="userNickname" id="userNickname" placeholder="请输入用户昵称">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="regiTime" class="col-sm-2 control-label">注册时间</label>
+    
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="regiTime" id="regiTime" placeholder="请输入注册时间">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="isVip" class="col-sm-2 control-label">是否是VIP</label>
+    
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="isVip" id="isVip" placeholder="请输入是或否">
+                    </div>
+                </div>
+                <div class="form-group">
+                        <label for="balance" class="col-sm-2 control-label">余额</label>
+        
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="balance" id="balance" placeholder="请输入余额">
+                        </div>
+                    </div>
+                 <div class="form-group">
+                            <label for="integration" class="col-sm-2 control-label">积分</label>
+            
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="integration" id="integration" placeholder="请输入积分">
+                            </div>
+                        </div>
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer">
+                <button type="button" id="back" class="btn btn-default">返回列表</button>
+                <button type="submit" class="btn btn-info pull-right">提交</button>
+                <button type="reset" class="btn btn-default pull-right" style="margin-right: 15px">重置</button>
+            </div>
+            <!-- /.box-footer -->
+        </form>
+    </div>
