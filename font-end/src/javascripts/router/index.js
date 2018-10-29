@@ -24,18 +24,13 @@ const _init = () => {
     router.route('/home', (req, res, next) => { // 当路由切换进来的时候执行
         res.render(home_template);
     })
-<<<<<<< HEAD
     //订单列表路由
     router.route('/order-list', orderController.list);
     router.route('/order-save', orderController.save)
-=======
-   //订单列表路由
-   router.route('/order-list',orderController.list);
 
    //商品路由
    router.route('/products_list',products_controller.list)
    router.route('/products_save',products_controller.save)
->>>>>>> f8f4162c40f892ec55733a8501ed55e1647e6d2b
 
 
     // 404路由
