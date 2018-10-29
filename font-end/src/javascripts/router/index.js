@@ -6,6 +6,9 @@ import home_template from '../views/home.html'
 import not_found_template from '../views/404.html'
 //order控制器
 import orderController from '../controllers/order_controller'
+//商品路由
+import products_controller from '../controllers/products_controller'
+import bus from '../util/bus'
 
 var router = null
 
@@ -21,9 +24,18 @@ const _init = () => {
     router.route('/home', (req, res, next) => { // 当路由切换进来的时候执行
         res.render(home_template);
     })
+<<<<<<< HEAD
     //订单列表路由
     router.route('/order-list', orderController.list);
     router.route('/order-save', orderController.save)
+=======
+   //订单列表路由
+   router.route('/order-list',orderController.list);
+
+   //商品路由
+   router.route('/products_list',products_controller.list)
+   router.route('/products_save',products_controller.save)
+>>>>>>> f8f4162c40f892ec55733a8501ed55e1647e6d2b
 
 
     // 404路由
@@ -41,9 +53,18 @@ const _init = () => {
         }
     })
 
+<<<<<<< HEAD
     //因为控制层无法使用到router，所以给bus绑定事件，在其他地方触发
     bus.on('go', (path, body = {}) => router.go(path, body));
     bus.on('back', () => router.back());
+=======
+    bus.on('go', (path) => {
+        router.go(path)
+    })
+    bus.on('back', () => {
+        router.back()
+    }) 
+>>>>>>> f8f4162c40f892ec55733a8501ed55e1647e6d2b
 
     // 给按钮添加事件
     _navLink()
