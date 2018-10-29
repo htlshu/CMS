@@ -1,9 +1,12 @@
 import SMERouter from 'sme-router'
+//bus工具
+import bus from '../util/bus';
 import home_template from '../views/home.html'
 // 404视图
 import not_found_template from '../views/404.html'
 //order控制器
 import orderController from '../controllers/order_controller'
+
 var router = null
 
 // 启动路由的方法
@@ -12,15 +15,15 @@ const _init = () => {
     router = new SMERouter('router-view')
     // 中间件会先执行 为导航按钮添加高亮样式
     router.use((req, res, next) => {
-        _activeLink(req.route) 
+        _activeLink(req.route)
     })
     // 开始匹配各个路由
     router.route('/home', (req, res, next) => { // 当路由切换进来的时候执行
         res.render(home_template);
     })
-   //订单列表路由
-   router.route('/order-list',orderController.list);
-
+    //订单列表路由
+    router.route('/order-list', orderController.list);
+    router.route('/order-save', orderController.save)
 
 
     // 404路由
@@ -31,12 +34,16 @@ const _init = () => {
 
     //上面的没有匹配到就会跳转404路由或者首页
     router.route('*', (req, res, next) => {
-        if ( req.url === '' ) { // 刚进入项目，没有hash值，重定向到home
+        if (req.url === '') { // 刚进入项目，没有hash值，重定向到home
             res.redirect('/home')
         } else { // 如果路径匹配不到，导向404
             res.redirect('/not-found')
-        }     
+        }
     })
+
+    //因为控制层无法使用到router，所以给bus绑定事件，在其他地方触发
+    bus.on('go', (path, body = {}) => router.go(path, body));
+    bus.on('back', () => router.back());
 
     // 给按钮添加事件
     _navLink()
@@ -46,8 +53,6 @@ const _init = () => {
 const _navLink = (selector) => {
     let $navs = $(selector || '.sidebar-menu li.nav-link[to]')
     $navs.on('click', function () {
-        console.log('to');
-        
         let _path = $(this).attr('to')
         router.go(_path)
     })
@@ -59,8 +64,8 @@ const _activeLink = (route) => {
     let $navs = $('.sidebar-menu li[to]')
     $navs.removeClass('active')
     $navs.filter(`[to='${route}']`)
-         .addClass('active')
-           
+        .addClass('active')
+
 }
 
 
@@ -69,4 +74,3 @@ export default {
     init: _init,
     navLink: _navLink
 }
-
