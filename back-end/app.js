@@ -7,6 +7,7 @@ var { version } = require('./config')
 // 路由工具
 var indexRouter = require('./routes/index');
 var orderRouter = require('./routes/order_router');
+var userRouter = require('./routes/user_router');
 // 应用程序
 var app = express();
 var allowCrossDomain = function(req, res, next) {
@@ -34,8 +35,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // 启用路由工具
 app.use('/', indexRouter);
+//user界面路由管理
+app.use('/api/'+version+'/user',userRouter);
 //order界面路由管理
 app.use('/api/'+version+'/order',orderRouter);
+
 
 
 
