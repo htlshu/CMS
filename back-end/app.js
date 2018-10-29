@@ -35,7 +35,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // 启用路由工具
 app.use('/', indexRouter);
 //order界面路由管理
-app.use('/api/'+version+'order',orderRouter);
+app.use('/api/'+version+'/order',orderRouter);
 
 
 

@@ -17,7 +17,7 @@ const handleDate = (data ,res ,template ,callback = {}) => {
 const response = function ({template ,code ,data}){
     this.render(template,{
         code : code,
-        date : date,
+        data : data,
     })
 }
 

@@ -1,10 +1,10 @@
 var orderModel = require('../models/order_model')
-var {handleData} = require('../util')
+var {handleDate} = require('../util')
 //list控制器
-const list = async (req , res) => {
+const list =  (req , res) => {
     res.set('content-type','application/json; charset=utf8');
-    let _data = await orderModel.list();
-    handleData(_data ,res ,'index');
+    let _data =  orderModel.list();
+    handleDate(_data ,res ,'index');
 }
 
 

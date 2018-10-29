@@ -46,6 +46,8 @@ const _init = () => {
 const _navLink = (selector) => {
     let $navs = $(selector || '.sidebar-menu li.nav-link[to]')
     $navs.on('click', function () {
+        console.log('to');
+        
         let _path = $(this).attr('to')
         router.go(_path)
     })
