@@ -4,6 +4,10 @@ import home_template from '../views/home.html'
 import not_found_template from '../views/404.html'
 //order控制器
 import orderController from '../controllers/order_controller'
+//商品路由
+import products_controller from '../controllers/products_controller'
+import bus from '../util/bus'
+
 var router = null
 
 // 启动路由的方法
@@ -21,6 +25,9 @@ const _init = () => {
    //订单列表路由
    router.route('/order-list',orderController.list);
 
+   //商品路由
+   router.route('/products_list',products_controller.list)
+   router.route('/products_save',products_controller.save)
 
 
     // 404路由
@@ -37,6 +44,13 @@ const _init = () => {
             res.redirect('/not-found')
         }     
     })
+
+    bus.on('go', (path) => {
+        router.go(path)
+    })
+    bus.on('back', () => {
+        router.back()
+    }) 
 
     // 给按钮添加事件
     _navLink()
