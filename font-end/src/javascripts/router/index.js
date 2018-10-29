@@ -48,18 +48,9 @@ const _init = () => {
         }
     })
 
-<<<<<<< HEAD
     //因为控制层无法使用到router，所以给bus绑定事件，在其他地方触发
     bus.on('go', (path, body = {}) => router.go(path, body));
     bus.on('back', () => router.back());
-=======
-    bus.on('go', (path) => {
-        router.go(path)
-    })
-    bus.on('back', () => {
-        router.back()
-    }) 
->>>>>>> f8f4162c40f892ec55733a8501ed55e1647e6d2b
 
     // 给按钮添加事件
     _navLink()
