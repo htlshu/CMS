@@ -21,6 +21,7 @@ module.exports = {
         contentBase: [PATH.join(__dirname, "../dev")],
         compress: true,
         port: 9000,
+        //代理请求。前端ajax请求地址:/api
         proxy: {
             '/api': {
                 target: 'http://localhost:3000',

@@ -2,7 +2,8 @@ import SMERouter from 'sme-router'
 import home_template from '../views/home.html'
 // 404视图
 import not_found_template from '../views/404.html'
-
+//order控制器
+import orderController from '../controllers/order_controller'
 var router = null
 
 // 启动路由的方法
@@ -15,11 +16,10 @@ const _init = () => {
     })
     // 开始匹配各个路由
     router.route('/home', (req, res, next) => { // 当路由切换进来的时候执行
-       
-        res.render(home_template)
+        res.render(home_template);
     })
-   
-   
+   //订单列表路由
+   router.route('/order-list',orderController.list);
 
 
 
