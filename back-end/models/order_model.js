@@ -66,7 +66,7 @@ const save = (body) => {
     // 根据这个时间创建moment
     let moment = Moment(_timestamp)
 
-    return new PositionModel({
+    return new orderModel({
             ...body,
             createTime: _timestamp,
             formatTime: moment.format("YYYY-MM-DD, hh:mm")

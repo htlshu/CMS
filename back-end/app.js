@@ -40,12 +40,7 @@ app.use('/', indexRouter);
 app.use('/api/'+version+'/user',userRouter);
 //order界面路由管理
 app.use('/api/'+version+'/order',orderRouter);
-<<<<<<< HEAD
-app.use('/api/products',productsRouter);
-
-=======
 app.use('/api/'+version+'/products',productsRouter);
->>>>>>> dingding
 
 
 
