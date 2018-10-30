@@ -7,11 +7,8 @@ var { version } = require('./config')
 // 路由工具
 var indexRouter = require('./routes/index');
 var orderRouter = require('./routes/order_router');
-<<<<<<< HEAD
 var userRouter = require('./routes/user_router');
-=======
 var productsRouter = require('./routes/products');
->>>>>>> 87fb61d7f99e4211e2a60bf541dba2b54183b2e4
 // 应用程序
 var app = express();
 var allowCrossDomain = function(req, res, next) {
