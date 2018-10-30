@@ -8,7 +8,7 @@ import order_update from '../views/order_update.html'
 import orderModel from '../models/order_model'
 //工具
 import { bus ,handleToastByData } from '../util'
-
+import qs from 'querystring'
 
 //视图所有列表的控制器
 const list = async (req ,res ,next) => {
@@ -70,7 +70,21 @@ const update = async (req ,res ) => {
         data : await (orderModel.listOne({ id })).data
     })
     res.render(_html);
-    
+    updateEvent();
+}
+const updateEvent = () => {
+    $('.order-update #back').on('click', function () {
+        bus.emit('go', '/order-list')
+    })
+
+    $('.order-update #update-form').submit(handleUpdateSubmit)
+}
+const handleUpdateSubmit = async function (e) {
+    e.preventDefault();
+    let _datastr = $(this).serialize()
+    let _data = qs.parse(_datastr)
+    let _results = await orderModel.update(_data)  
+    handleToastByData(_results)
 }
 export default {
     list,

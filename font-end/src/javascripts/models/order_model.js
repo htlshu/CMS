@@ -7,6 +7,16 @@ const list = () => {
         }
     })
 }
+//提供某一条数据
+const listOne = (data) => {
+    return $.ajax({
+        url : '/api/v1/order/listOne',
+        data,
+        success : (result) => {
+            return result;
+        }
+    })
+}
 //删除数据
 const remove = (data) => {
     return $.ajax({
@@ -30,8 +40,21 @@ const save = () => {
         })
     })
 }
+//更新的数据
+const update = (data) => {
+    return $.ajax({
+        url : '/api/v1/order/update',
+        data,
+        type : 'POST',
+        success : (result) => {
+            return result
+        }
+    })
+}
 export default {
     list,
     remove,
     save,
+    listOne,
+    update
 }

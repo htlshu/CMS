@@ -83,4 +83,6 @@ module.exports = {
     list,
     remove,
     save,
+    listOne,
+    update,
 }
