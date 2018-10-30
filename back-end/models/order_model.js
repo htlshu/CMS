@@ -79,8 +79,6 @@ const update = (body) => {
         body.createTime = _timestamp
         body.formatTime = moment.format("YYYY-MM-DD, hh:mm")
     }
-    console.log(body.id);
-    
     return OrderModel.updateOne({
         _id: body.id
     }, {$set:{ ...body

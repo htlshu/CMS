@@ -28,8 +28,7 @@ const save = async (req,res) => {
 //update 控制器
 const update = async (req,res) => {
     res.set('content-type', 'application/json; charset=utf8');
-    let _data = await orderModel.save(req.body);
-    
+    let _data = await orderModel.update(req.body);
     handleDate(_data,res,'index');
 }
 module.exports = {
