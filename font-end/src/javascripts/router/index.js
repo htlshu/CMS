@@ -1,4 +1,3 @@
-1
 import SMERouter from 'sme-router'
 // bus工具
 import bus from '../util/bus'
@@ -19,23 +18,25 @@ const _init = () => {
     router = new SMERouter('router-view')
     // 中间件会先执行 为导航按钮添加高亮样式
     router.use((req, res, next) => {
-        _activeLink(req.route) 
+        _activeLink(req.route)
     })
     // 开始匹配各个路由
     router.route('/home', (req, res, next) => { // 当路由切换进来的时候执行
         res.render(home_template);
     })
-   //订单列表路由
-   router.route('/order-list',orderController.list);
-   //用户列表路由
-   router.route('/user-list',userController.list);
-   // 保存用户路由
-    router.route('/user-save', userController.save)
-    //商品路由
-   router.route('/products_list',products_controller.list)
-   router.route('/products_save',products_controller.save)
+    //订单列表路由
+    router.route('/order-list', orderController.list);
+    router.route('/order-save', orderController.save)
+    router.route('/order-update', orderController.update)
 
-   // 404路由
+    //商品路由
+    router.route('/products_list', products_controller.list)
+    router.route('/products_save', products_controller.save)
+
+    router.route('/user-list', userController.list);
+    // 保存用户路由
+    router.route('/user-save', userController.save)
+    // 404路由
     router.route('/not-found', (req, res, next) => { // 当路由切换进来的时候执行
         res.render(not_found_template)
         _navLink('.not-found a[to]')
@@ -58,9 +59,9 @@ const _init = () => {
     _navLink()
 }
 
- // 因为在控制器中无法使用到router，所以给bus绑定事件，在其他模块中触发bus的事件
- bus.on('go', (path, body = {}) =>  router.go(path, body) )
- bus.on('back', () =>  router.back() )  
+// 因为在控制器中无法使用到router，所以给bus绑定事件，在其他模块中触发bus的事件
+bus.on('go', (path, body = {}) => router.go(path, body))
+bus.on('back', () => router.back())
 
 
 // 给导航按钮添加点击事件
@@ -78,8 +79,8 @@ const _activeLink = (route) => {
     let $navs = $('.sidebar-menu li[to]')
     $navs.removeClass('active')
     $navs.filter(`[to='${route}']`)
-         .addClass('active')
-}         
+        .addClass('active')
+}
 
 
 export default {
