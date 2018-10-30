@@ -37,7 +37,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 //order界面路由管理
 app.use('/api/'+version+'/order',orderRouter);
-app.use('/api/products',productsRouter.router);
+app.use('/api/'+version+'/products',productsRouter);
 
 
 

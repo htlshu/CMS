@@ -1,16 +1,57 @@
+
+const mongoose = require('../util/mongoose')
+const Moment = require('moment')
+
+var Products = mongoose.model('products', new mongoose.Schema({
+    productsName: String,
+    details: String,
+    discountse: String,
+    originalPrice : String,
+    currentPrice : String,
+    createTime: String,
+    formatTime: String
+}));
+
+
+// const list = () => {
+//     // limit skip
+//      return Products.find({}).
+//             then((results) => {
+//                 return results
+//             }).
+//             catch((err) => {
+//                 return false
+//             })
+// }
 const list = () => {
-    console.log('hhhh')
-    return {
-        a:1,
-        b:3
-    }
-    // let _query = {}// 查询的约定条件
-    // return PositionModel.find(_query).sort({createTime: -1}).then((results) => {
-    //     return results
-    // }).catch((err) => {
-    //     return false
-    // })
+    return [
+        {
+            "productsName" : "葡萄",
+            "originalPrice" : 100
+        }
+    ]
 }
+
+const save = (body) => {
+    
+    let _timestamp = Date.now()
+    let moment = Moment(_timestamp)
+
+    return new Position({ 
+        ...body,
+        createTime: _timestamp,
+        formatTime: moment.format("YYYY-MM-DD, hh:mm")
+    }).save()
+      .then((result) => {
+        return result
+      })
+      .catch((err) => {
+          return false
+      })
+
+}
+
 module.exports = {
-    list
+    list,
+    save
 }

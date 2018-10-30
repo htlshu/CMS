@@ -1,9 +1,11 @@
 
 const list = () => {
    return $.ajax({
-       url: '/api/products/list',
+       url: '/api/v1/products/list',
        success: (data) => {
+            console.log(data)
            return data
+          
        }
    })
 }
