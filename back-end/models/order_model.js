@@ -7,28 +7,20 @@ let OrderModel = mongoose.model('order', new mongoose.Schema({
     productImg: String,
     productID: String,
     userID: String,
-    orderTime: String,
+    createTime: String,
+    formatTime:String,
     productNum: Number,
     totalPrice: Number,
 }))
 
-//返回所有列表的数据
 const list = () => {
-    return [{
-        "productID": "01",
-        "userID": "01",
-        "orderTime": "2018.01.01",
-        "productNum": 1,
-        "totalPrice": 10,
-    }]
-}
-/* const list = () => {
-    return OrderModel.find().sort({orderTime : -1}).then((result) => {
+    let _query = {};
+    return OrderModel.find(_query).sort({createTime : -1}).then((result) => {
         return result;
     }).catch((err) => {
         return false;
     })
-} */
+}
 
 //
 
@@ -66,7 +58,7 @@ const save = (body) => {
     // 根据这个时间创建moment
     let moment = Moment(_timestamp)
 
-    return new orderModel({
+    return new OrderModel({
             ...body,
             createTime: _timestamp,
             formatTime: moment.format("YYYY-MM-DD, hh:mm")
@@ -87,10 +79,12 @@ const update = (body) => {
         body.createTime = _timestamp
         body.formatTime = moment.format("YYYY-MM-DD, hh:mm")
     }
-    return orderModel.updateOne({
+    console.log(body.id);
+    
+    return OrderModel.updateOne({
         _id: body.id
-    }, { ...body
-    }).then((results) => {
+    }, {$set:{ ...body
+    }}).then((results) => {                                                                                                                                                                                                                                                                                                                                                                                                                                                
         return results
     }).catch((err) => {
         return false

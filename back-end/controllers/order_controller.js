@@ -1,15 +1,15 @@
 var orderModel = require('../models/order_model')
 var { handleDate } = require('../util')
 //list控制器
-const list =  (req , res) => {
+const list = async (req , res) => {
     res.set('content-type','application/json; charset=utf8');
-    let _data =  orderModel.list();
+    let _data = await orderModel.list();
     handleDate(_data ,res ,'index');
 }
 //listOne 控制器
-const listOne = async () => {
+const listOne = async (req , res) => {
     res.set('content-type','application/json; charset=utf8');
-    let _data = await orderModel.listOne();
+    let _data = await orderModel.listOne(req.body);
     handleDate(_data ,res ,'index');
 }
 //remove 控制器
@@ -19,11 +19,18 @@ const remove = async (req,res) => {
     handleDate(_data ,res ,'index');
 }
 //save控制器
-const save = (req,res) => {
+const save = async (req,res) => {
      // 接收到发送过来的数据 req.body, 然后存入数据库
-     res.set('content-type', 'application/json; charset=utf8')
-     let _data = await orderModel.save(req.body)
-     handleData(_data, res, 'index')
+     res.set('content-type', 'application/json; charset=utf8');
+     let _data = await orderModel.update(req.body);
+     handleDate(_data, res, 'index');
+}
+//update 控制器
+const update = async (req,res) => {
+    res.set('content-type', 'application/json; charset=utf8');
+    let _data = await orderModel.save(req.body);
+    
+    handleDate(_data,res,'index');
 }
 module.exports = {
     list,
