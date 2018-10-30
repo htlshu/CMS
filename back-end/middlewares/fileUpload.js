@@ -38,7 +38,7 @@ const fileUpload = function (req, res, next) {
   upload(req, res, function (err) {
     if (err) {
           res.set('content-type', 'application/json; charset=utf8')
-      res.render('position', {
+      res.render('index', {
           code: 501,
           data: JSON.stringify({ msg: '请上传正确格式的图片' })
       })

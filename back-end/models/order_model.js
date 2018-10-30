@@ -1,4 +1,5 @@
 let mongoose = require('../util/mongoose');
+const Moment = require('moment') //时间格式化
 let fs = require('fs-extra');
 let PATH = require('path');
 
@@ -58,14 +59,14 @@ const listOne = ({
         return false
     })
 }
-//保存数据
+//添加数据
 const save = (body) => {
     // 此时的时间
     let _timestamp = Date.now()
     // 根据这个时间创建moment
     let moment = Moment(_timestamp)
 
-    return new PositionModel({
+    return new orderModel({
             ...body,
             createTime: _timestamp,
             formatTime: moment.format("YYYY-MM-DD, hh:mm")
@@ -77,10 +78,29 @@ const save = (body) => {
         .catch((err) => {
             return false
         })
-
 }
+//修改数据
+const update = (body) => {
+    if (body.republish) {
+        let _timestamp = Date.now()
+        let moment = Moment(_timestamp)
+        body.createTime = _timestamp
+        body.formatTime = moment.format("YYYY-MM-DD, hh:mm")
+    }
+    return orderModel.updateOne({
+        _id: body.id
+    }, { ...body
+    }).then((results) => {
+        return results
+    }).catch((err) => {
+        return false
+    })
+}
+
 module.exports = {
     list,
     remove,
     save,
+    listOne,
+    update,
 }
