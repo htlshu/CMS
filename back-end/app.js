@@ -7,6 +7,7 @@ var { version } = require('./config')
 // 路由工具
 var indexRouter = require('./routes/index');
 var orderRouter = require('./routes/order_router');
+var userRouter = require('./routes/user_router');
 var productsRouter = require('./routes/products');
 // 应用程序
 var app = express();
@@ -35,9 +36,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // 启用路由工具
 app.use('/', indexRouter);
+//user界面路由管理
+app.use('/api/'+version+'/user',userRouter);
 //order界面路由管理
 app.use('/api/'+version+'/order',orderRouter);
+<<<<<<< HEAD
 app.use('/api/'+version+'/products',productsRouter);
+=======
+app.use('/api/products',productsRouter);
+
+>>>>>>> d0f53ec943bfb2eeb3d176d326fc56d52947c9b3
 
 
 

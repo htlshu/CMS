@@ -7,10 +7,13 @@ import home_template from '../views/home.html'
 import not_found_template from '../views/404.html'
 //order控制器
 import orderController from '../controllers/order_controller'
+//user控制器
+import userController from '../controllers/user_controller'
 //商品路由
 import products_controller from '../controllers/products_controller'
-
 var router = null
+
+
 
 // 启动路由的方法
 const _init = () => {
@@ -29,11 +32,14 @@ const _init = () => {
     router.route('/order-save', orderController.save)
     router.route('/order-update', orderController.update)
 
-   //商品路由
-   router.route('/products_list',products_controller.list)
-   router.route('/products_save',products_controller.save)
+    //商品路由
+    router.route('/products_list', products_controller.list)
+    router.route('/products_save', products_controller.save)
 
-
+    //用户列表路由
+    router.route('/user-list', userController.list);
+    // 保存用户路由
+    router.route('/user-save', userController.save)
     // 404路由
     router.route('/not-found', (req, res, next) => { // 当路由切换进来的时候执行
         res.render(not_found_template)
@@ -56,7 +62,6 @@ const _init = () => {
     // 给按钮添加事件
     _navLink()
 }
-
 // 给导航按钮添加点击事件
 const _navLink = (selector) => {
     let $navs = $(selector || '.sidebar-menu li.nav-link[to]')
@@ -73,9 +78,7 @@ const _activeLink = (route) => {
     $navs.removeClass('active')
     $navs.filter(`[to='${route}']`)
         .addClass('active')
-
 }
-
 
 
 export default {

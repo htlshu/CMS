@@ -7,7 +7,31 @@ const list = () => {
         }
     })
 }
-
+//删除数据
+const remove = (data) => {
+    return $.ajax({
+        url : '/api/v1/order/remove',
+        data,
+        success : (result) => {
+            return result;
+        }
+    })
+}
+//保存数据
+const save = () => {
+    return new Promise((resolve) => {
+        //jquery form插件方法ajaxSubmit（）
+        $('.position-save #save-form').ajaxSubmit({
+            url: '/api/v1/order/save',
+            type: 'POST',
+            success: (results) => {
+                resolve(results)
+            }
+        })
+    })
+}
 export default {
     list,
+    remove,
+    save,
 }
