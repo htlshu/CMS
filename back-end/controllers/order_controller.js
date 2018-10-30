@@ -13,7 +13,7 @@ const remove = async (req,res) => {
     handleDate(_data ,res ,'index');
 }
 //save控制器
-const save = (req,res) => {
+const save =async (req,res) => {
      // 接收到发送过来的数据 req.body, 然后存入数据库
      res.set('content-type', 'application/json; charset=utf8')
      let _data = await orderModel.save(req.body)

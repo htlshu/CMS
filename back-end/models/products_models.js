@@ -3,11 +3,11 @@ const mongoose = require('../util/mongoose')
 const Moment = require('moment')
 
 var Products = mongoose.model('products', new mongoose.Schema({
-    productsName: String,
-    details: String,
-    discountse: String,
+    name: String,
+    subtitle: String,
+    discount: String,
     originalPrice : String,
-    currentPrice : String,
+    productionPlace: String,
     createTime: String,
     formatTime: String
 }));
@@ -28,6 +28,10 @@ const list = () => {
         {
             "productsName" : "葡萄",
             "originalPrice" : 100
+        },
+        {
+            "productsName" : "苹果",
+            "originalPrice" : 99
         }
     ]
 }
@@ -37,7 +41,7 @@ const save = (body) => {
     let _timestamp = Date.now()
     let moment = Moment(_timestamp)
 
-    return new Position({ 
+    return new Products({ 
         ...body,
         createTime: _timestamp,
         formatTime: moment.format("YYYY-MM-DD, hh:mm")

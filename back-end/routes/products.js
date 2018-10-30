@@ -4,6 +4,7 @@ var products_controller = require('../controllers/products_controller')
 
 /* GET users listing. */
 router.get('/list',products_controller.list)
+router.post('/save',products_controller.save)
 // router.get('/list',(req,res,next) => {
   
 //     res.json({

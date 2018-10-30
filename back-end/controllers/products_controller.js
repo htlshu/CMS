@@ -11,7 +11,18 @@ const list = async (req, res) => {
     })
 
 }
+const save = async (req, res) => {
+    res.set('content-type', 'application/json; charset=utf8')
+    let _data = await products_models.save(req.body)
+    res.render('products', { 
+        status: 200, 
+        data: JSON.stringify(_data)
+    })
+
+}
+
 
 module.exports =　{
-    list
+    list,
+    save
 }
