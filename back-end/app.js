@@ -40,8 +40,7 @@ app.use('/', indexRouter);
 app.use('/api/'+version+'/user',userRouter);
 //order界面路由管理
 app.use('/api/'+version+'/order',orderRouter);
-app.use('/api/products',productsRouter.router);
-
+app.use('/api/'+version+'/products',productsRouter);
 
 
 
