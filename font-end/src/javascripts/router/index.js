@@ -1,8 +1,4 @@
-
-
-   
-
-
+1
 import SMERouter from 'sme-router'
 // bus工具
 import bus from '../util/bus'
