@@ -9,6 +9,7 @@ import products_model from '../models/products_model'
 //商品列表
 const list = async (req,res,next) => { 
     var _data = (await products_model.list()).data
+    console.log(_data);
 
     //编译模板
     let html = template.render(products_list_template,{
@@ -36,4 +37,3 @@ export default{
     list,
     save
 }
-

@@ -12,6 +12,8 @@ import userController from '../controllers/user_controller'
 import products_controller from '../controllers/products_controller'
 var router = null
 
+
+
 // 启动路由的方法
 const _init = () => {
     // 实例化路由工具
@@ -33,6 +35,7 @@ const _init = () => {
     router.route('/products_list', products_controller.list)
     router.route('/products_save', products_controller.save)
 
+    //用户列表路由
     router.route('/user-list', userController.list);
     // 保存用户路由
     router.route('/user-save', userController.save)
