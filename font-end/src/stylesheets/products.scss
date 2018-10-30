@@ -1,0 +1,25 @@
+
+
+#page_content{
+    .box{
+        .input-group{
+            float: right;
+        }
+        table{
+            th,td{
+                text-align: center;
+                vertical-align: middle;
+                img{
+                    width: 50px;
+                }
+            }
+        }
+    }
+   
+  
+}
+//按钮
+span.label.label-primary{
+    width: 60px;
+    display: inline-block;
+}
