@@ -29,11 +29,11 @@ const listEvent = ()=> {
     $('.pos-remove').on('click',removeOrder)
 }
 //删除操作
-const removeOrder = function(){
+const removeOrder = async function(){
     let id = $(this).parents('tr').data('id');
-    let _data = orderModel.remove({id : id});
+    let _data = await orderModel.remove({id : id});
     handleToastByData(_data,{
-        isReact : false,
+        isReact : true,
         success : (data) => {
             bus.emit('go','/order-list?_='+data.deleteId)
         }
@@ -67,7 +67,7 @@ const handleSaveSubmit = async function (e){
 const update = async (req ,res ) => {
     let { id } = req.body;
     let _html = template.render(order_update,{
-        data : await (orderModel.listOne({ id })).data
+        data : (await orderModel.listOne({id})).data
     })
     res.render(_html);
     updateEvent();

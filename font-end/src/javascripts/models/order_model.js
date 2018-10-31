@@ -11,7 +11,8 @@ const list = () => {
 const listOne = (data) => {
     return $.ajax({
         url : '/api/v1/order/listOne',
-        data,
+        data : data,
+        type :'POST',
         success : (result) => {
             return result;
         }
@@ -31,11 +32,11 @@ const remove = (data) => {
 const save = () => {
     return new Promise((resolve) => {
         //jquery form插件方法ajaxSubmit（）
-        $('.position-save #save-form').ajaxSubmit({
+        $('.order-save #save-form').ajaxSubmit({
             url: '/api/v1/order/save',
             type: 'POST',
-            success: (results) => {
-                resolve(results)
+            success: (result) => {
+                resolve(result)
             }
         })
     })
