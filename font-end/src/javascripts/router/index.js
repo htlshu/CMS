@@ -4,6 +4,8 @@ import bus from '../util/bus'
 import home_template from '../views/home.html'
 // 404视图
 import not_found_template from '../views/404.html'
+//地图控制器
+import  mapController from '../controllers/map_controller'
 //order控制器
 import orderController from '../controllers/order_controller'
 //user控制器
@@ -26,6 +28,7 @@ const _init = () => {
     router.route('/home', (req, res, next) => { // 当路由切换进来的时候执行
         res.render(home_template);
     })
+    
     //订单列表路由
     router.route('/order-list', orderController.list);
     router.route('/order-save', orderController.save)
@@ -34,11 +37,17 @@ const _init = () => {
     //商品路由
     router.route('/products_list', products_controller.list)
     router.route('/products_save', products_controller.save)
-
     //用户列表路由
     router.route('/user-list', userController.list);
     // 保存用户路由
-    router.route('/user-save', userController.save)
+     router.route('/user-save', userController.save) 
+     //更改用户路由  
+     router.route('/user-update', userController.update) 
+     
+     // 地图
+    router.route('/map', mapController.map)
+
+   
     // 404路由
     router.route('/not-found', (req, res, next) => { // 当路由切换进来的时候执行
         res.render(not_found_template)

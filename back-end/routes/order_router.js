@@ -7,6 +7,6 @@ router.get('/list',orderController.list);
 router.get('/remove',orderController.remove);
 router.post('/save',fileUpload,orderController.save);
 router.post('/listOne',orderController.listOne);
-router.post('/update',orderController.update);
+//router.post('/update',orderController.update);
 
 module.exports = router;
