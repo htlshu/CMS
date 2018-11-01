@@ -1,11 +1,18 @@
 <div class="box box-info order-update">
     <div class="box-header with-border">
-        <h3 class="box-title">修改职位信息</h3>
+        <h3 class="box-title">修改订单信息</h3>
     </div>
     <!-- /.box-header -->
     <!-- form start -->
     <form class="form-horizontal" id="update-form">
         <div class="box-body">
+            <!-- <div class="form-group">
+                <img src="http://localhost:3000{{data.productImg}}" style="width:50px;height : 50px">
+                <label for="productImg" class="col-sm-2 control-label">商品图片</label>
+                <div class="col-sm-10">
+                    <input type="file" class="form-control" name="productImg"  id="productImg">
+                </div>
+            </div> -->
             <div class="form-group">
                 <label for="productID" class="col-sm-2 control-label">商品编号</label>
                 <div class="col-sm-10">
@@ -16,13 +23,14 @@
             <div class="form-group">
                 <label for="userID" class="col-sm-2 control-label">用户编号</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" value="{{data.userID}}" name="userID" id="userID" placeholder="请输入用户编号">
+                    <input type="text" class="form-control" value="{{data.userID}}" name="userID" id="userID"
+                        placeholder="请输入用户编号">
                 </div>
             </div>
             <div class="form-group">
-                <label for="orderTime" class="col-sm-2 control-label">下单时间</label>
+                <label for="formatTime" class="col-sm-2 control-label">下单时间</label>
                 <div class="col-sm-10">
-                    <input type="text" value="{{data.orderTime}}" class="form-control" name="orderTime" id="orderTime"
+                    <input type="text" value="{{data.formatTime}}" class="form-control" name="formatTime" id="formatTime"
                         placeholder="请输入下单时间">
                 </div>
             </div>

@@ -49,8 +49,84 @@ const save = (body) => {
 }
 
 
+const remove = async( { id } ) => {
+    // 删除数据库中的某一条数据
+    let _row = await listone({ id })
+  
+    return UserModel.deleteOne({ _id: id }).then((results) => {
+        results.deleteId = id
+        if ( _row.userLogo && _row.userLogo !== default_logo) {
+        fs.removeSync(PATH.resolve(__dirname, '../public'+_row.userLogo))
+        }
+        return results
+    }).catch((err) => {
+        // fs.appendFileSync('./logs/logs.txt', Moment().format("YYYY-MM-DD, hh:mm") + '' +JSON.stringify(err))
+        return false
+    })
+}
 
+
+
+// 返回列表数据
+const list = async ({ pageNo = 1, pageSize = 2, search = '' }) => {
+    let re = new RegExp(search, 'i')
+    let _query = search ?  { userName: re } : {}// 查询的约定条件
+    console.log(_query, 111)
+    // limit // 取几条
+    // skip // 从哪里开始
+    let _all_items = await listall(_query)
+
+
+    return UserModel.find(_query)
+    .sort({createTime: -1})
+    .skip((pageNo - 1) * pageSize)// 从哪一页开始
+    .limit(~~pageSize)// 截取多少
+    .then((results) => {
+        return { 
+            items: results, 
+            pageInfo: { // 页码信息
+                pageNo, // 当前页
+                pageSize, // 一页数量
+                total: _all_items.length, // 总数
+                totalPage: Math.ceil(_all_items.length / pageSize) // 总页数
+            }
+        }
+    }).catch((err) => {
+        return false
+    })
+}
+const listone = ({ id }) => {
+    return UserModel.findById(id).then((results) => {
+        return results
+    }).catch((err) => {
+        return false
+    }) 
+}
+
+
+const update = async (body) => {
+    if ( !body.userLogo )   delete body.userLogo
+//    {
+//   body= {...PositionModel.findById({ _id: body.id })}
+   
+//    }  
+   /*if ( body.republish ) {
+       let _timestamp = Date.now()
+       let moment = Moment(_timestamp)
+       body.createTime = _timestamp
+       body.formatTime = moment.format("YYYY-MM-DD, hh:mm")
+   }*/
+   return UserModel.updateOne({ _id: body.id }, { ...body }).then((results) => {
+       return results
+   }).catch((err) => {
+       return false
+   }) 
+}
 module.exports = {
     listall,
-    save
+    save,
+    remove,
+    list ,
+    listone,
+    update
 }

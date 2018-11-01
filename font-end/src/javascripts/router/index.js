@@ -1,18 +1,27 @@
 import SMERouter from 'sme-router'
-//bus工具
-import bus from '../util/bus';
-
+// bus工具
+import bus from '../util/bus'
 import home_template from '../views/home.html'
 // 404视图
 import not_found_template from '../views/404.html'
+//地图控制器
+import  mapController from '../controllers/map_controller'
 //order控制器
 import orderController from '../controllers/order_controller'
 //user控制器
 import userController from '../controllers/user_controller'
-//商品路由
+//商品控制器
 import products_controller from '../controllers/products_controller'
+// page-header 控制器
+import page_header_controller from '../controllers/page-header'
+
+// page-header model
+import page_header_model from '../models/page-header'
+
 var router = null
 
+// 记录上一次路由跳转的url
+var prevUrl = ''
 
 
 // 启动路由的方法
@@ -23,10 +32,13 @@ const _init = () => {
     router.use((req, res, next) => {
         _activeLink(req.route)
     })
+    // 保证都能匹配到，中间都能执行
+    router.route('/', renderPageHeader)
     // 开始匹配各个路由
     router.route('/home', (req, res, next) => { // 当路由切换进来的时候执行
         res.render(home_template);
     })
+    
     //订单列表路由
     router.route('/order-list', orderController.list);
     router.route('/order-save', orderController.save)
@@ -35,13 +47,23 @@ const _init = () => {
     //商品路由
     router.route('/products_list', products_controller.list)
     router.route('/products_save', products_controller.save)
+<<<<<<< HEAD
     router.route('/products_update', products_controller.update)
 
 
+=======
+>>>>>>> 0a879e909ac9aad7236ae7e9ca4ac09645852568
     //用户列表路由
     router.route('/user-list', userController.list);
     // 保存用户路由
-    router.route('/user-save', userController.save)
+     router.route('/user-save', userController.save) 
+     //更改用户路由  
+     router.route('/user-update', userController.update) 
+     
+     // 地图
+    router.route('/map', mapController.map)
+
+   
     // 404路由
     router.route('/not-found', (req, res, next) => { // 当路由切换进来的时候执行
         res.render(not_found_template)
@@ -64,6 +86,14 @@ const _init = () => {
     // 给按钮添加事件
     _navLink()
 }
+// 渲染页面头部
+const renderPageHeader = ( req, res, next ) => {
+    // 这里的prevUrl就是上一次的URL
+    page_header_controller.render(page_header_model.pageHeaderInfo(req.url, prevUrl))
+    // 已经进入到当前路由了，将上一次路由改成当前的路由
+    prevUrl = req.url
+}
+
 // 给导航按钮添加点击事件
 const _navLink = (selector) => {
     let $navs = $(selector || '.sidebar-menu li.nav-link[to]')

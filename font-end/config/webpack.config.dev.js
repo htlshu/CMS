@@ -7,6 +7,7 @@ module.exports = {
     // 入口
     entry: {
         main: ['./src/javascripts/app'],
+        admin: ['./src/javascripts/admin'],
     },
     // 出口
     output: {
@@ -29,12 +30,25 @@ module.exports = {
             }
         }
     },
-    plugins: [
-        new HtmlWebpackPlugin({
+    plugins: [ // 实现某些特定的功能
+        // 可以打包html文件 如果实现多页面开发的话，就需要使用多个 HtmlWebpackPlugin
+        new HtmlWebpackPlugin({ 
             template: './src/index.html',
-            filename: 'index.html'
+            filename: 'index.html',
+            chunks: ['main']
         }),
-        new CopyWebpackPlugin([{
+        new HtmlWebpackPlugin({ 
+            template: './src/admin.html',
+            filename: 'admin.html',
+            chunks: ['admin']
+        }),
+        // new HtmlWebpackPlugin({ 
+        //     template: './src/login.html',
+        //     filename: 'login.html',
+        //      chunks: ['login']
+        // }),
+        // 将静态资源目录复制到开发输出目录
+        new CopyWebpackPlugin([{ 
             from: PATH.resolve(__dirname, '../static'),
             to:  PATH.resolve(__dirname, '../dev/static')
         }])

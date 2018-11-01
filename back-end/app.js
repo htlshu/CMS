@@ -9,6 +9,7 @@ var indexRouter = require('./routes/index');
 var orderRouter = require('./routes/order_router');
 var userRouter = require('./routes/user_router');
 var productsRouter = require('./routes/products');
+var adminRouter = require('./routes/admin');
 // 应用程序
 var app = express();
 var allowCrossDomain = function(req, res, next) {
@@ -41,6 +42,10 @@ app.use('/api/'+version+'/user',userRouter);
 //order界面路由管理
 app.use('/api/'+version+'/order',orderRouter);
 app.use('/api/'+version+'/products',productsRouter);
+<<<<<<< HEAD
+=======
+app.use('/api/'+ version +'/admin', adminRouter);
+>>>>>>> 0a879e909ac9aad7236ae7e9ca4ac09645852568
 
 
 
