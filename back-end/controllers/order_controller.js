@@ -23,11 +23,9 @@ const remove = async (req,res) => {
     handleDate(_data ,res ,'index');
 }
 //save控制器
-<<<<<<< HEAD
-const save =async (req,res) => {
-=======
+
 const save = async (req,res) => {
->>>>>>> 0a879e909ac9aad7236ae7e9ca4ac09645852568
+
      // 接收到发送过来的数据 req.body, 然后存入数据库
      let _data = await orderModel.save(req.body);
      handleDate(_data, res, 'index');

@@ -26,7 +26,7 @@ const pageHeaderInfo = (url, prevUrl) => {
         },
         '/order-save': {
             title: '订单管理',
-            description: '订单职位',
+            description: '订单列表',
             list: [
                 { text: '订单列表', path: '#/order-list'+_search },
                 { text: '添加订单'}
@@ -38,6 +38,29 @@ const pageHeaderInfo = (url, prevUrl) => {
             list: [
                 { text: '订单列表', path: '#/order-list'+_search },
                 { text: '订单更新'}
+            ]
+        },
+        '/products_list': {
+            title: '商品管理',
+            description: '商品列表',
+            list: [
+                { text: '商品列表' }
+            ]
+        },
+        '/products_save': {
+            title: '商品管理',
+            description: '商品列表',
+            list: [
+                { text: '商品列表', path: '#/order-list'+_search },
+                { text: '添加商品'}
+            ]
+        },
+        '/products_update': {
+            title: '商品管理',
+            description: '商品更新',
+            list: [
+                { text: '商品列表', path: '#/order-list'+_search },
+                { text: '商品更新'}
             ]
         }
     }

@@ -42,10 +42,9 @@ app.use('/api/'+version+'/user',userRouter);
 //order界面路由管理
 app.use('/api/'+version+'/order',orderRouter);
 app.use('/api/'+version+'/products',productsRouter);
-<<<<<<< HEAD
-=======
+
 app.use('/api/'+ version +'/admin', adminRouter);
->>>>>>> 0a879e909ac9aad7236ae7e9ca4ac09645852568
+
 
 
 

@@ -47,12 +47,15 @@ const _init = () => {
     //商品路由
     router.route('/products_list', products_controller.list)
     router.route('/products_save', products_controller.save)
-<<<<<<< HEAD
+
     router.route('/products_update', products_controller.update)
 
 
-=======
->>>>>>> 0a879e909ac9aad7236ae7e9ca4ac09645852568
+
+   
+
+
+
     //用户列表路由
     router.route('/user-list', userController.list);
     // 保存用户路由
