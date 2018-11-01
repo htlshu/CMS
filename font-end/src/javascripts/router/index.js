@@ -71,9 +71,7 @@ const _init = () => {
     _navLink()
 }
 
-// 因为在控制器中无法使用到router，所以给bus绑定事件，在其他模块中触发bus的事件
-bus.on('go', (path, body = {}) => router.go(path, body))
-bus.on('back', () => router.back())
+
 
 
 // 给导航按钮添加点击事件
