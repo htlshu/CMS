@@ -40,6 +40,29 @@ const pageHeaderInfo = (url, prevUrl) => {
                 { text: '订单更新'}
             ]
         },
+        '/user-list': {
+            title: '用户管理',
+            description: '用户列表',
+            list: [
+                { text: '用户列表' }
+            ]
+        },
+        '/user-save': {
+            title: '用户管理',
+            description: '用户列表',
+            list: [
+                { text: '用户列表', path: '#/order-list'+_search },
+                { text: '添加用户'}
+            ]
+        },
+        '/user-update': {
+            title: '用户管理',
+            description: '用户更新',
+            list: [
+                { text: '用户列表', path: '#/order-list'+_search },
+                { text: '用户更新'}
+            ]
+        },
         '/products_list': {
             title: '商品管理',
             description: '商品列表',
