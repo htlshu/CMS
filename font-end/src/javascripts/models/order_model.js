@@ -1,7 +1,8 @@
 //提供所有订单信息
-const list = () => {
+const list = (page) => {
     return $.ajax({
         url : '/api/v1/order/list',
+        data : page,
         success : (data) => {
             return data;
         }
@@ -11,8 +12,7 @@ const list = () => {
 const listOne = (data) => {
     return $.ajax({
         url : '/api/v1/order/listOne',
-        data : data,
-        type :'POST',
+        data ,
         success : (result) => {
             return result;
         }
@@ -23,6 +23,7 @@ const remove = (data) => {
     return $.ajax({
         url : '/api/v1/order/remove',
         data,
+        type : 'delete',
         success : (result) => {
             return result;
         }
