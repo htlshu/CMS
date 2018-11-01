@@ -1,12 +1,12 @@
 
-
-
-// 引入样式
-import '../stylesheets/stylesheets/app.scss'
-// import '../stylesheets/products.scss'
-
 // 引入路由
 import router from './router'
+
+// 引入样式
+import '../stylesheets/products.scss'
+
+
+
 
 // 主体结构视图
 const body_template = require('./views/body.html')

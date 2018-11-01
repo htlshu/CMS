@@ -1,55 +1,65 @@
-<div class="box box-info products_save">
+<div class="box box-info products_update">
     <div class="box-header with-border">
-        <h3 class="box-title">添加职位信息</h3>
+        <h3 class="box-title">修改职位信息</h3>
     </div>
     <!-- /.box-header -->
     <!-- form start -->
-    <form class="form-horizontal" id="save-form">
+    {{ each data }}
+    <form class="form-horizontal" id="update-form">
         <div class="box-body">
             <div class="form-group">
                 <label for="inputText3" class="col-sm-2 control-label">商品名</label>
 
                 <div class="col-sm-10">
-                    <input type="text" name="name" class="form-control" id="inputText3" placeholder="请输入商品名称">
+                    <input type="text" name="name" class="form-control" id="inputText3" value="{{ $value.name }}">
                 </div>
             </div>
             <div class="form-group">
                 <label for="inputText4" class="col-sm-2 control-label">详情</label>
 
                 <div class="col-sm-10">
-                    <input type="text" name="subtitle" class="form-control" id="inputText4" placeholder="请输入商品详情">
+                    <input type="text" name="subtitle" class="form-control" id="inputText4" value="{{ $value.subtitle }}">
                 </div>
             </div>
             <div class="form-group">
                 <label for="inputText5" class="col-sm-2 control-label">优惠</label>
 
                 <div class="col-sm-10">
-                    <input type="text" name="discount" class="form-control" id="inputText5" placeholder="请输入折扣信息">
+                    <input type="text" name="discount" class="form-control" id="inputText5" value="{{ $value.discount }}">
                 </div>
             </div>
             <div class="form-group">
                 <label for="inputText6" class="col-sm-2 control-label">原价</label>
 
                 <div class="col-sm-10">
-                    <input type="text" name="originalPrice" class="form-control" id="inputText6" placeholder="原价">
+                    <input type="text" name="originalPrice" class="form-control" id="inputText6" value="{{ $value.originalPrice }}">
                 </div>
             </div>
             <div class="form-group">
                 <label for="inputText7" class="col-sm-2 control-label">产地</label>
 
                 <div class="col-sm-10">
-                    <input type="text" name="productionPlace" class="form-control" id="inputText7" placeholder="商品产地">
+                    <input type="text" name="productionPlace" class="form-control" id="inputText7" value="{{ $value.productionPlace }}">
                 </div>
             </div>
+            <div class="form-group">
+                <label for="inputText8" class="col-sm-2 control-label">重新发布</label>
+
+                <div class="col-sm-10">
+                    <input type="checkbox" name="republish" id="inputText8" >
+                </div>
+            </div>
+            <input type="hidden" name = "id" value="{{$value._id}}"> 
         </div>
         <!-- /.box-body -->
         <div class="box-footer">
             <button type="button" class="btn btn-default" id="back">返回列表</button>
             
-            <button type="submit" class="btn btn-info pull-right" >添加</button>
+            <button type="submit" class="btn btn-info pull-right " >提交</button>
             <button type="reset" class="btn btn-info pull-right" >重置</button>
         </div>
         <!-- /.box-footer -->
     </form>
+    {{ /each }}
 </div>
 <!-- /.box -->
