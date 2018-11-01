@@ -40,7 +40,6 @@ var upload = multer({
 const fileUpload = function (req, res, next) {
   upload(req, res, function (err) {
     if (err) {
-      res.set('content-type', 'application/json; charset=utf8')
       res.render('index', {
         code: 501,
         data: JSON.stringify({
