@@ -7,7 +7,6 @@ const getUserInfoById = (id) => {
     return AdminModel
     .findById(id)
     .then(results => {
-        console.log(results)
         return results
     })
     .catch(err => {

@@ -17,8 +17,6 @@ const listOne = async (req , res) => {
 }
 //remove 控制器
 const remove = async (req,res) => {
-    console.log(req.body);
-    
     let _data = await orderModel.remove(req.body);
     handleDate(_data ,res ,'index');
 }

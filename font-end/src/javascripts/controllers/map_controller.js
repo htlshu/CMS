@@ -45,7 +45,6 @@ window.onApiLoaded = function () {
     });
     //解析定位结果
     function onComplete(data) {
-       console.log('定位结果：' + data.position);
        // 地理编码，将经纬度处理成地址
        regeoCode(data.position)
        // 移动到定位位置

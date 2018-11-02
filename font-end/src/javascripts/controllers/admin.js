@@ -23,9 +23,7 @@ const bindEvent = () => {
         e.preventDefault()
 
         let _params = $(this).serialize()
-        console.log(_params)
         let _result = await admin_model.signup(qs.parse(_params))
-        console.log(66666)
         switch (_result.status) {
             case 500:
                 toast('失败，服务器出了问题');
@@ -44,7 +42,6 @@ const bindEvent = () => {
         e.preventDefault()
         let _params = $(this).serialize()
         let _result = await admin_model.signin(qs.parse(_params))
-        console.log(_result)
         switch (_result.status) {
             case 203:
                 toast('密码错误');
@@ -53,7 +50,7 @@ const bindEvent = () => {
                 toast('用户不存在');
                 break;
             default:
-                localStorage.user = qs.parse(_params).username
+                localStorage.token = _result.data.token
                 window.location.href = "/";
                 break;
         }

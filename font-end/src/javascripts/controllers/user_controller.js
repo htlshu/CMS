@@ -41,7 +41,6 @@ const bindListEvent = (_page) => {
   
     //  点击删除按钮
     $('.user-remove').on('click', function () {
-        console.log(111)
         handleRemoveUser.bind(this,_page)()
     })
 
@@ -110,7 +109,6 @@ const  handleRemoveUser = async function (_page)  {
     
     // 如果只剩一个，将pageNo-1
     let _pageNo = trs.length > 1 ? _page.pageNo : (_page.pageNo - (_page.pageNo > 1 ? 1 : 0))
-    console.log(_pageNo )
     handleToastByData(_data, {
         isReact: false,
         success: (data) => {
