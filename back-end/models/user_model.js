@@ -117,6 +117,7 @@ const update = async (body) => {
        body.formatTime = moment.format("YYYY-MM-DD, hh:mm")
    }*/
    return UserModel.updateOne({ _id: body.id }, { ...body }).then((results) => {
+      
        return results
    }).catch((err) => {
        return false

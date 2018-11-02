@@ -40,8 +40,11 @@ const listone = async (req, res) => {
 //更新某条数据
 const update = async (req, res) => {
     res.set('content-type', 'application/json; charset=utf8')
-    
+   
     let _data = await userModel.update(req.body)
+    console.log(33333333333333333333,_data);
+    
+
     handleDate(_data, res, 'index')
 }
 
