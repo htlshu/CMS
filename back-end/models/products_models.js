@@ -1,6 +1,9 @@
 
 const mongoose = require('../util/mongoose')
 const Moment = require('moment')
+const fs = require('fs-extra') // 时间格式化
+const PATH = require('path') // 时间格式化
+let default_logo = '/uploads/logos/default.jpg'
 
 var Products = mongoose.model('products', new mongoose.Schema({
     name: String,
@@ -9,7 +12,8 @@ var Products = mongoose.model('products', new mongoose.Schema({
     originalPrice : String,
     productionPlace: String,
     createTime: String,
-    formatTime: String
+    formatTime: String,
+    productsImg: String
 }));
 //查询数据总数计算页码等
 const listAll = (_query = {}) => {
@@ -64,7 +68,7 @@ const save = (body) => {
     
     let _timestamp = Date.now()
     let moment = Moment(_timestamp)
-
+    body.productsImg =  body.productsImg || default_logo
     return new Products({ 
         ...body,
         createTime: _timestamp,
@@ -79,10 +83,22 @@ const save = (body) => {
 
 }
 
-const remove = ({id}) => {
-    return Products.deleteOne({ _id: id }).then((results) => {
-        results.deleteId = id
-        return results
+const remove =  async ({id,pageNo,pageSize}) => {
+    let _row = await listOne({ id }) //把移除的这一条的找出   去删除图片
+
+    return Products.deleteOne({ _id: id })
+        .then(async (result) => {
+         //  获取最新的数量
+         
+        let _all_items = await listAll();
+        result.deleteId = id
+
+        result.isBack = (pageNo-1) * pageSize >= _all_items.length;
+        if ( _row.productsImg && _row.productsImg  !== default_logo ) {
+            fs.removeSync(PATH.resolve(__dirname, '../public'+_row.productsImg))
+        }  
+        
+        return result
     }).catch((err) => {
         // fs.appendFileSync('./logs/logs.txt', Moment().format("YYYY-MM-DD, hh:mm") + '' +JSON.stringify(err))
         return false
@@ -98,7 +114,7 @@ const listOne = ({id}) => {
     })
 }
 const update = (body) => {
-
+    if ( !body.productsImg )   delete body.productsImg
     if ( body.republish ) {
         let _timestamp = Date.now()
         let moment = Moment(_timestamp)

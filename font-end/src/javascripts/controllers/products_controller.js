@@ -11,8 +11,8 @@ import qs from 'querystring'
 const list = async (req,res,next) => { 
     req.query = req.query || {}
     let _pages = {
-        pageNo :req.query.pageNo,
-        pageSize : req.query.pageSize,
+        pageNo :req.query.pageNo || 1,
+        pageSize : req.query.pageSize || 10,
         search : req.query.search
     }
     
@@ -24,16 +24,18 @@ const list = async (req,res,next) => {
     })
     res.render(html)
 
-    bindListEvent()// 绑定事件
+    bindListEvent(_pages)// 绑定事件
     
 }
 
 //list事件绑定  发布订阅模式
-const bindListEvent = () => {
+const bindListEvent = (_pages) => {
     $('.label-primary').on('click',function(){
         bus.emit('go','/products_save')
     })
-    $('.box .remove').on('click',removeEvent)
+    $('.box .remove').on('click', function () {
+        removeEvent.call(this, _pages)
+    })
     $('.box .update').on('click',function(){
         let id = $(this).parents('tr').data("id") 
     
@@ -41,7 +43,7 @@ const bindListEvent = () => {
         
     })
     $('.box .productsSearch').on('click',pronductSearch)
-    $()
+    
 }
 
 //添加
@@ -56,40 +58,31 @@ const bindSaveEvent = () => {
     $('.products_save #back').on('click', function () {
         bus.emit('go', '/products_list')
     })
-    
-    let _isLoading = false
    
-    $('.products_save #save-form').submit(async function(e){      //jqury 的 submit 方法
-        e.preventDefault()
-       //submit()函数的返回值为jQuery类型，返回当前jQuery对象本身
-        
-       let _params = qs.parse($(this).serialize())
-       
-       let _result = await products_model.save(_params)
-       //添加成功后可以加个提示
-       
-    })
-    // let _isLoading = false
+    $('.products_save #save-form').submit(handleSaveSubmit)
+   
+}
 
-    // $('.box-info #save-form').submit(async function (e) {
-    //     e.preventDefault()
-    //     if ( _isLoading ) return false;
+const handleSaveSubmit = async function(e){
+    e.preventDefault()
 
-    //     _isLoading = true
-    //     // 拿到form的数据
-    //     let _params = qs.parse($(this).serialize())
-    //     let result = await position_model.save(_params)
-    //     _isLoading = false 
+    //submit()函数的返回值为jQuery类型，返回当前jQuery对象本身
+    //    let _params = qs.parse($(this).serialize())     //这个无法获取到文件 
     
+    let _result = await products_model.save() //用的jquire from 插件   有两个方法   ajaxForm ajaxSubmit
+    //添加后根据_result结果可以加个提示
 }
 //删除
 
-const removeEvent =async function(){
+const removeEvent = async function(_pages){
     
     let id = $(this).parents('tr').data("id")    //data-id  h5新增
-    let result =await products_model.remove({id:id})
-    if(result.status=200){
-        bus.emit('go','/products_list?_='+ result.data.deleteId)  //删除是哈希值不改变  所以页面不刷新
+    let result =await products_model.remove({id:id,..._pages})
+   
+    if(result.status=200 ){
+        let _pageNo = _pages.pageNo
+        _pageNo -= result.data.isBack ? 1 : 0
+        bus.emit('go','/products_list?pageNo='+_pageNo+'&_='+result.data.deleteId + '&search='+(_pages.search || ''))  //删除是哈希值不改变  所以页面不刷新
     }
     
 }
