@@ -115,7 +115,7 @@ eval("module.exports = __webpack_require__(/*! regenerator-runtime */ \"./node_m
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("exports = module.exports = __webpack_require__(/*! ../../../node_modules/_css-loader@1.0.0@css-loader/lib/css-base.js */ \"./node_modules/_css-loader@1.0.0@css-loader/lib/css-base.js\")(false);\n// imports\n\n\n// module\nexports.push([module.i, \".body-bg {\\n  width: 100%;\\n  height: 100%;\\n  position: absolute;\\n  left: 0;\\n  top: 0;\\n  z-index: -1;\\n  background-image: url(\\\"/static/images/admin-bg.jpg\\\") !important;\\n  background-size: 100% 100% !important;\\n  filter: blur(10px); }\\n\", \"\"]);\n\n// exports\n\n\n//# sourceURL=webpack:///./src/stylesheets/stylesheets/admin.scss?./node_modules/_css-loader@1.0.0@css-loader!./node_modules/_sass-loader@7.1.0@sass-loader/lib/loader.js");
+eval("exports = module.exports = __webpack_require__(/*! ../../../node_modules/_css-loader@1.0.0@css-loader/lib/css-base.js */ \"./node_modules/_css-loader@1.0.0@css-loader/lib/css-base.js\")(false);\n// imports\n\n\n// module\nexports.push([module.i, \".flex {\\n  display: flex;\\n  justify-content: space-between;\\n  animation: animte 4s; }\\n\\n.body-bg {\\n  width: 100%;\\n  height: 100%;\\n  position: absolute;\\n  left: 0;\\n  top: 0;\\n  z-index: -1;\\n  background-image: url(\\\"/static/images/admin-bg.jpg\\\") !important;\\n  background-size: 100% 100% !important;\\n  filter: blur(10px); }\\n\", \"\"]);\n\n// exports\n\n\n//# sourceURL=webpack:///./src/stylesheets/stylesheets/admin.scss?./node_modules/_css-loader@1.0.0@css-loader!./node_modules/_sass-loader@7.1.0@sass-loader/lib/loader.js");
 
 /***/ }),
 

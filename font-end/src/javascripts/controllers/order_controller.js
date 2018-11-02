@@ -65,8 +65,6 @@ const removeOrder = async function (_page) {
     //跳转到前一页 
     // 删除的时候此页还有多少条数据
     // 如果只剩一个，将pageNo-1 
-    console.log(_data);
-    
     handleToastByData(_data, {
         isReact: true,
         success: (data) => {

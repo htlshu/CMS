@@ -71,7 +71,6 @@ const remove = async( { id } ) => {
 const list = async ({ pageNo = 1, pageSize = 2, search = '' }) => {
     let re = new RegExp(search, 'i')
     let _query = search ?  { userName: re } : {}// 查询的约定条件
-    console.log(_query, 111)
     // limit // 取几条
     // skip // 从哪里开始
     let _all_items = await listall(_query)

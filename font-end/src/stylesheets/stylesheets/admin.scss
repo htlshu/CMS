@@ -1,5 +1,11 @@
 
 
+.flex {
+    display: flex; justify-content: space-between;
+
+    animation: animte 4s;
+}
+
 .body-bg {
     width: 100%;
     height: 100%;

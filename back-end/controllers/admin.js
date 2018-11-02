@@ -1,5 +1,8 @@
 const admin_model = require('../models/admin')
 const { handleDate } = require('../util')
+const jwt = require('jsonwebtoken')
+const fs  = require('fs')
+const PATH  = require('path')
 const signup = async (req, res, next) => {
     
     // 先判断有没有这个用户 
@@ -28,7 +31,17 @@ const signin = async (req, res, next) => {
         // 如果前端利用完整的表单提交逻辑的话，可以利用res.redirect告知浏览器进行跳转
         // res.redirect('/')
         if (_data) {
-            res.render('index', { code: 200, data: JSON.stringify('success') })
+            // 非对称加密
+            let _payload = { // 钥加密的数据
+                userid: _judge_result[0]._id,
+                username: _judge_result[0].username,
+                level: 8,
+            }
+            // 取出来私钥
+            let _private = fs.readFileSync(PATH.resolve(__dirname, '../keys/private.key'))
+
+            var _token = jwt.sign(_payload, _private, { algorithm: 'RS256'});
+            res.render('index', { code: 200, data: JSON.stringify({token : _token}) })
         } else {
             res.render('index', { code: 203, data: JSON.stringify('密码错误') })
         }

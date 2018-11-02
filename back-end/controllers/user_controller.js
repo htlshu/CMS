@@ -7,9 +7,7 @@ var userModel = require('../models/user_model')
 //list控制器
 const listall = async (req , res) => {
     res.set('content-type','application/json; charset=utf8');
-    console.log(55555)
     let _data = await userModel.listall();
-    console.log(_data);
     handleDate(_data ,res ,'index');
 }
 
