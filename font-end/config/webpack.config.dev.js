@@ -1,29 +1,30 @@
 const PATH = require('path')
+//
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
-    mode: 'development',
-    // 入口
+    mode: 'development', // 打包模式：production，development，none
+    // 入口 打包的入口文件，模块化的根模块
     entry: {
-        main: ['./src/javascripts/app'],
-        admin: ['./src/javascripts/admin'],
+       main: ['./src/javascripts/app'],
+       admin: ['./src/javascripts/admin'],
     },
     // 出口
     output: {
-        filename: '[name].js',
-        // 路径以配置文件为基准的
+        filename: '[name].js', // 打包输出文件的名字
+        // 输出路径，路径以配置文件为基准的
         path: PATH.resolve(__dirname, '../dev')
     },
-    devServer: {
+    devServer: { // 开发服务器 http-server（webserver） 依赖 webpack-dev-server
         // 让服务器从这两个目录中响应资源
         // contentBase: [PATH.join(__dirname, "../dev"), PATH.join(__dirname, "../public")],
-       // host: "10.9.189.197",
+      //  host: "10.9.189.14",
+        // 指定服务器从哪里响应资源
         contentBase: [PATH.join(__dirname, "../dev")],
         compress: true,
         port: 9000,
-        //代理请求。前端ajax请求地址:/api
-        proxy: {
+        proxy: { // 代理api请求到 api server
             '/api': {
                 target: 'http://localhost:3000',
                 changeOrigin: true

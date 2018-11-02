@@ -78,6 +78,7 @@ let _isLoading = false
 const handleSaveSubmit = async function (e) {
     
     e.preventDefault()
+    console.log(2222)
 
     if ( _isLoading ) return false;
 
@@ -122,6 +123,7 @@ const  handleRemoveUser = async function (_page)  {
 const update = async (req, res) => {
     let { id } = req.body// 要更新的数据的id
     // 获取id对应的数据进行渲染
+
     let html = template.render(user_update, {
         data: (await userModel.listone({ id })).data // 获取到列表数据
     })
@@ -145,6 +147,8 @@ const handleUpdateSubmit = async function (e) {
   //  let _datastr = $(this).serialize()
   //  let _data = qs.parse(_datastr)
     let _results = await userModel.update()  
+    console.log(_results);
+    
     handleToastByData(_results)
 }
 export default {
