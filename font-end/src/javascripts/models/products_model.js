@@ -53,6 +53,8 @@ const update = (data) => {
         type: 'post',
         data,
         success: (data) => {
+            console.log(data);
+            
             return data
         }
     })
