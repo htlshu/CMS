@@ -105,7 +105,7 @@ const remove =  async ({id,pageNo,pageSize}) => {
     })
 }
 const listOne = ({id}) => {
-    return Products.find({"_id":id}).
+    return Products.findById({ id }).
     then((results) => {
         return results
     }).
