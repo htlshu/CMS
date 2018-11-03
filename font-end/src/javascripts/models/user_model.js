@@ -57,7 +57,6 @@ const update = () => {
            return results
         }
     })*/
-    console.log(3333)
     return new Promise((resolve) => {
         $('.user-update #update-form').ajaxSubmit({
             url: '/api/v1/user/update',

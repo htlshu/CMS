@@ -78,8 +78,6 @@ let _isLoading = false
 const handleSaveSubmit = async function (e) {
     
     e.preventDefault()
-    console.log(2222)
-
     if ( _isLoading ) return false;
 
     _isLoading = true
@@ -147,8 +145,6 @@ const handleUpdateSubmit = async function (e) {
   //  let _datastr = $(this).serialize()
   //  let _data = qs.parse(_datastr)
     let _results = await userModel.update()  
-    console.log(_results);
-    
     handleToastByData(_results)
 }
 export default {
