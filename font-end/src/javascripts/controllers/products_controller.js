@@ -86,7 +86,7 @@ const removeEvent = async function(_pages){
         _pageNo -= result.data.isBack ? 1 : 0
         
 
-        bus.emit('go','/products_list?pageNo='+(_pageNo <= 1 ?1 :(_pageNo-1))+'&_='+result.data.deleteId + '&search='+(_pages.search || ''))  //删除是哈希值不改变  所以页面不刷新
+        bus.emit('go','/products_list?pageNo='+(_pageNo <= 1 ? 1 :_pageNo-1)+'&_='+result.data.deleteId + '&search='+(_pages.search || ''))  //删除是哈希值不改变  所以页面不刷新
     }
     
 }
@@ -94,7 +94,7 @@ const removeEvent = async function(_pages){
 const update =async (req,res,next) => {
     
     let {id}= req.body
-    let _data = (await products_model.listOne({id})).data   //这里必须要把await()起来   异步函数执行完
+    let _data = (await products_model.listOne({id})).data  //这里必须要把await()起来   异步函数执行完
     
     let html = template.render(products_update_template,{
         data:_data
