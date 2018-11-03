@@ -53,8 +53,6 @@ const update = (data) => {
         type: 'post',
         data,
         success: (data) => {
-            console.log(data);
-            
             return data
         }
     })
@@ -64,6 +62,7 @@ const listOne = (data) => {
         url:'/api/v1/products/listOne',
         data,
         success: (data) => {
+           console.log(data);
            
             return data
         }

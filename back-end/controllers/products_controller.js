@@ -46,7 +46,6 @@ const listOne = async (req,res,next) => {
     res.set('content-type', 'application/json; charset=utf8')
     
     let _data = await products_models.listOne(req.query)
-    
     res.render('products',{
         status: 200, 
         data: JSON.stringify(_data)
