@@ -84,8 +84,8 @@ const save = (body) => {
 }
 
 const remove =  async ({id,pageNo,pageSize}) => {
-    let _row = await listOne({ id }) //把移除的这一条的找出   去删除图片
-
+    let _row = await listOne({id }) //把移除的这一条的找出   去删除图片
+   
     return Products.deleteOne({ _id: id })
         .then(async (result) => {
          //  获取最新的数量
@@ -94,9 +94,9 @@ const remove =  async ({id,pageNo,pageSize}) => {
         result.deleteId = id
 
         result.isBack = (pageNo-1) * pageSize >= _all_items.length;
-        if ( _row.productsImg && _row.productsImg  !== default_logo ) {
-            fs.removeSync(PATH.resolve(__dirname, '../public'+_row.productsImg))
-        }  
+      
+        fs.removeSync(PATH.resolve(__dirname, '../public'+_row.productsImg))
+       
         
         return result
     }).catch((err) => {
@@ -105,7 +105,8 @@ const remove =  async ({id,pageNo,pageSize}) => {
     })
 }
 const listOne = ({id}) => {
-    return Products.find({"_id":id}).
+    
+    return Products.findById(id).
     then((results) => {
         return results
     }).

@@ -30,7 +30,7 @@ const save = (data) => {
                 url: '/api/v1/products/save',
                 type: 'POST',
                 success: (data) => {
-            
+                    console.log(data)
                     return data   
                 }
             })
