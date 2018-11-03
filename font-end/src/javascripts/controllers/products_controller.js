@@ -48,6 +48,7 @@ const bindListEvent = (_pages) => {
 
 //添加
 const save = (req,res,next) => {
+   
     res.render(products_save_template)  
     bindSaveEvent()         
 }
@@ -81,8 +82,11 @@ const removeEvent = async function(_pages){
    
     if(result.status=200 ){
         let _pageNo = _pages.pageNo
+   
         _pageNo -= result.data.isBack ? 1 : 0
-        bus.emit('go','/products_list?pageNo='+_pageNo+'&_='+result.data.deleteId + '&search='+(_pages.search || ''))  //删除是哈希值不改变  所以页面不刷新
+        
+
+        bus.emit('go','/products_list?pageNo='+(_pageNo > 1 ?_pageNo :(_pageNo+1))+'&_='+result.data.deleteId + '&search='+(_pages.search || ''))  //删除是哈希值不改变  所以页面不刷新
     }
     
 }

@@ -51,7 +51,8 @@
       <% for(var i = 0; i < data.pageInfo.totalPage; i++){ %>
       <li class="{{if data.pageInfo.pageNo == i+1}}active {{/if}}"><a href="#/products_list?search=<%= data.pageInfo.search %>&pageNo=<%= i+1 %>"> <%= i+1 %></a></li>
       <% } %>
-      <li><a href="#/products_list?search=<%= data.pageInfo.search %>&pageNo=<%= (data.pageInfo.pageNo  == data.pageInfo.totalPage) ?   data.pageInfo.pageNo : ~~data.pageInfo.pageNo + 1 %>">&raquo;</a></li>
+      <li><a href="#/products_list?search=<%= data.pageInfo.search %>&pageNo=<%= (data.pageInfo.pageNo  < data.pageInfo.totalPage) ?   ~~data.pageInfo.pageNo +1 : data.pageInfo.totalPage %>">&raquo;</a></li>
+     
     </ul>
   </div>
   {{ else }}
