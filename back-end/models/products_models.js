@@ -105,12 +105,7 @@ const remove =  async ({id,pageNo,pageSize}) => {
     })
 }
 const listOne = ({id}) => {
-<<<<<<< HEAD
-    
-    return Products.findById(id).
-=======
     return Products.findById({ id }).
->>>>>>> HTLS
     then((results) => {
         return results
     }).

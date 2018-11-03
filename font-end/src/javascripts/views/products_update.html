@@ -4,42 +4,41 @@
     </div>
     <!-- /.box-header -->
     <!-- form start -->
-    {{ each data }}
     <form class="form-horizontal" id="update-form">
         <div class="box-body">
             <div class="form-group">
                 <label for="inputText3" class="col-sm-2 control-label">商品名</label>
 
                 <div class="col-sm-10">
-                    <input type="text" name="name" class="form-control" id="inputText3" value="{{ $value.name }}">
+                    <input type="text" name="name" class="form-control" id="inputText3" value="{{ data.name }}">
                 </div>
             </div>
             <div class="form-group">
                 <label for="inputText4" class="col-sm-2 control-label">详情</label>
 
                 <div class="col-sm-10">
-                    <input type="text" name="subtitle" class="form-control" id="inputText4" value="{{ $value.subtitle }}">
+                    <input type="text" name="subtitle" class="form-control" id="inputText4" value="{{ data.subtitle }}">
                 </div>
             </div>
             <div class="form-group">
                 <label for="inputText5" class="col-sm-2 control-label">优惠</label>
 
                 <div class="col-sm-10">
-                    <input type="text" name="discount" class="form-control" id="inputText5" value="{{ $value.discount }}">
+                    <input type="text" name="discount" class="form-control" id="inputText5" value="{{ data.discount }}">
                 </div>
             </div>
             <div class="form-group">
                 <label for="inputText6" class="col-sm-2 control-label">原价</label>
 
                 <div class="col-sm-10">
-                    <input type="text" name="originalPrice" class="form-control" id="inputText6" value="{{ $value.originalPrice }}">
+                    <input type="text" name="originalPrice" class="form-control" id="inputText6" value="{{ data.originalPrice }}">
                 </div>
             </div>
             <div class="form-group">
                 <label for="inputText7" class="col-sm-2 control-label">产地</label>
 
                 <div class="col-sm-10">
-                    <input type="text" name="productionPlace" class="form-control" id="inputText7" value="{{ $value.productionPlace }}">
+                    <input type="text" name="productionPlace" class="form-control" id="inputText7" value="{{ data.productionPlace }}">
                 </div>
             </div>
             <div class="form-group">
@@ -49,7 +48,7 @@
                     <input type="checkbox" name="republish" id="inputText8" >
                 </div>
             </div>
-            <input type="hidden" name = "id" value="{{$value._id}}"> 
+            <input type="hidden" name = "id" value="{{data._id}}"> 
         </div>
         <!-- /.box-body -->
         <div class="box-footer">
@@ -60,6 +59,5 @@
         </div>
         <!-- /.box-footer -->
     </form>
-    {{ /each }}
 </div>
 <!-- /.box -->
